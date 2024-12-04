@@ -1,0 +1,20 @@
+#'Marks secured by the students
+#'
+#'This data set consists of the marks secured by the students in mathematics, reading and writing exams, along with information on gender, ethnicity, parental education level, lunch type, and participation in a test preparation course. It allows for analyzing the influence of these factors on academic performance.
+#'
+#'@format A data frame with 1000 observations and 8 columns.
+#'\describe{
+#'   \item{gender}{male or female}
+#'   \item{race.ethnicity}{Either group A, B, C, D or E}
+#'   \item{parental.level.of.education}{Indicates the highest level of education attained by the student's parent. Possible values are : associate's degree, bachelor's degree, master's degree, high school, some college, or some high school}
+#'   \item{lunch}{Type of lunch of the student. Either standard or free/reduced.}
+#'   \item{test.preparation.course}{Indicates whether the student participated in a test preparation course. Either none (no participation) or completed (course completed).}
+#'   \item{math.score}{Score obtained by the student in mathematics, graded out of 100.}
+#'   \item{reading.score}{Score obtained by the student in reading, graded out of 100.}
+#'   \item{writing.score}{Score obtained by the student in writing, graded out of 100.}
+#' }
+#'@docType data
+#'@keywords datasets
+#'@usage data(students)
+#'@source https://www.kaggle.com/datasets/spscientist/students-performance-in-exams
+"students"
