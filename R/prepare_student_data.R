@@ -11,6 +11,15 @@
 #' for analysis and plotting.
 #'
 #' @export
+#'
+#' @examples
+#' student_data <- data.frame(
+#'   math_score = c(72, 69, NA, 47, 76),
+#'   reading_score = c(72, 90, 95, 57, 78),
+#'   writing_score = c(74, 88, 93, 44, 75),
+#'   gender = c("female", "female", "female", "male", "male")
+#' )
+#' tidy_data <- prepare_student_data(student_data, scale = TRUE, handle_missing = "mean")
 
 prepare_student_data <- function(data, scale = TRUE, handle_missing = "remove") {
   # Check for required columns
@@ -32,6 +41,8 @@ prepare_student_data <- function(data, scale = TRUE, handle_missing = "remove") 
   } else {
     stop("Invalid option for handle_missing. Use 'remove' or 'mean'.")
   }
+  # Standardize column names
+  colnames(data) <- gsub(" ", "_", tolower(colnames(data)))
 }
 # Scale numeric variables if required
 if (scale) {
