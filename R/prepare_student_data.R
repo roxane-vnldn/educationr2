@@ -7,6 +7,10 @@
 #' @param scale Logical; whether to standardize numeric columns. Defaults to \code{TRUE}.
 #' @param handle_missing How to handle missing values. Either \code{"remove"} to remove rows
 #' with missing values or \code{"mean"} to impute with the mean of the column. Defaults to \code{"remove"}.
+#' @return An object of class \code{"StudentData"}, which is a processed data frame ready
+#' for analysis and plotting.
+#'
+#' @export
 
 prepare_student_data <- function(data, scale = TRUE, handle_missing = "remove") {
   # Check for required columns
@@ -33,4 +37,10 @@ prepare_student_data <- function(data, scale = TRUE, handle_missing = "remove") 
 if (scale) {
   numeric_cols <- sapply(data, is.numeric)
   data[, numeric_cols] <- scale(data[, numeric_cols])
+
+
+# Assign custom class
+class(data) <- c("StudentData", class(data))
+
+return(data)
 }
