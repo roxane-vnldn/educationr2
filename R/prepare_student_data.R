@@ -53,15 +53,15 @@ prepare_student_data <- function(data, scale = TRUE, handle_missing = "remove") 
 
   # Standardize column names
   colnames(data) <- gsub(" ", "_", tolower(colnames(data)))
-}
-# Scale numeric variables if required
-if (scale) {
-  numeric_cols <- sapply(data, is.numeric)
-  data[, numeric_cols] <- scale(data[, numeric_cols])
 
+  # Scale numeric variables if required
+  if (scale) {
+    numeric_cols <- sapply(data, is.numeric)
+    data[, numeric_cols] <- scale(data[, numeric_cols])
+  }
 
-# Assign custom class
-class(data) <- c("StudentData", class(data))
+  # Assign custom class
+  class(data) <- c("StudentData", class(data))
 
-return(data)
+  return(data)
 }
