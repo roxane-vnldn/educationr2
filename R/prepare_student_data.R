@@ -65,3 +65,4 @@ prepare_student_data <- function(data, scale = TRUE, handle_missing = "remove") 
 
   return(data)
 }
+

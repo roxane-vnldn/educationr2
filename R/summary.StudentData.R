@@ -38,3 +38,4 @@ summary.StudentData <- function(obj,
     tibble::as_tibble()
 
 }
+
