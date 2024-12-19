@@ -70,7 +70,7 @@ plot.StudentData(data, "gender", "barplot")
 ```
 
 <img src="man/figures/README-example2-1.png" width="100%" /> Or we can
-get statistial summarys
+get statistical summarys
 
 ``` r
 
