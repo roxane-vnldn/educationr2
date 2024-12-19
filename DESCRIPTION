@@ -11,6 +11,7 @@ Description: educationr2 takes a data set consisting of the marks secured by the
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
+Date: 2024-12-19
 Depends:
   R (>= 4.2.0)
 URL: https://github.com/roxane-vnldn/educationr2
