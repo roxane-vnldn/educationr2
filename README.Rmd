@@ -55,7 +55,8 @@ Now to visually display the data
 
 plot.StudentData(data, "gender", "barplot")
 ```
-Or we can get statistial summarys 
+
+Or we can get statistical summarys 
 
 ```{r example3}
 
@@ -63,4 +64,4 @@ summary.StudentData(data, group_var = c("gender", "lunch"), summary_func = media
 
 ```
 
-
+More information is provided on the educationr2 vignette
