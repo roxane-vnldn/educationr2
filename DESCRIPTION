@@ -16,7 +16,6 @@ Depends:
 URL: https://github.com/roxane-vnldn/educationr2
 Imports: dplyr,
   ggplot2,
-  readr,
   tibble,
   tidyr
 RoxygenNote: 7.3.2
