@@ -62,15 +62,16 @@ head(data)
 #> 6                    none  0.3238788     0.9473163     0.6545291
 ```
 
-Now to visually display the data
+A nice ggplot2 plot can display the data
 
 ``` r
 
 plot.StudentData(data, "gender", "barplot")
 ```
 
-<img src="man/figures/README-example2-1.png" width="100%" /> Or we can
-get statistical summarys
+<img src="man/figures/README-example2-1.png" width="100%" /> 
+
+Or we can get statistical summarys
 
 ``` r
 
@@ -84,4 +85,4 @@ summary.StudentData(data, group_var = c("gender", "lunch"), summary_func = media
 #> 4 male   standard         0.390         -0.114      -0.0694
 ```
 
-
+More information is provided on the educationr2 vignette
