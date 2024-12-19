@@ -3,7 +3,7 @@
 
 # educationr2
 
-### Written by Roxane Marine Van Olden Barneveld, Killian Harnett, Krisra Ritina and Ronan Lambe
+### Written by Roxane Marine Van Olden Barneveld, Killian Harnett, Krista Ritina and Ronan Lambe
 
 <!-- badges: start -->
 <!-- badges: end -->
