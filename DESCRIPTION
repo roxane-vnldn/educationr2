@@ -6,6 +6,7 @@ Author: c(person("Roxanne Marine", "Van Olden Barneveld", email="roxane.vanolden
   person("Killian", "Harnett", email="killian.harnett.2022@mumail.ie", role=c("aut", "cre")),
   person("Krista", "Ritina", email="krista.ritina.2022@mumail.ie", role=c("aut", "cre")),
   person("Ronan", "Lambe", email="ronan.lambe.2022@mumail.ie", role=c("aut", "cre"))
+Maintainer: Ronan Lambe <ronan.lambe.2022@mumail.ie>
 Description: educationr2 takes a data set consisting of the marks secured by the students in mathematics, reading and writing exams, along with information on gender, ethnicity, parental education level, lunch type, and participation in a test preparation course. It allows for analyzing the influence of these factors on academic performance.
 License: GPL (>= 3)
 Encoding: UTF-8
