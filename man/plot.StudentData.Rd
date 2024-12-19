@@ -22,7 +22,10 @@ or \code{"writing.score"}, compared to the chosen categorical variable (e.g. \co
 Plots the subject scores against your chosen categorical variable in 3 ways, "violin", "boxplot" or "barplot".
 }
 \examples{
-data <- prepare_student_data(student_data)
+data(students)
+data <- prepare_student_data(students)
 plot.StudentData(data, "gender", "boxplot")
+
+
 
 }

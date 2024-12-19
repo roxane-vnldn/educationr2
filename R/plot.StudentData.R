@@ -8,14 +8,19 @@
 #' @param plot_type 3 different types of plots for analysis (e.g. \code{"boxplot"}).
 #'
 #' @importFrom ggplot2 "ggplot" "aes_string" "geom_boxplot" "geom_bar" "geom_violin" "ggtitle" "theme"
+#' @importFrom tidyr "gather"
 #'
 #'
 #' @return A plot, either boxplot, violin or barplot of the \code{"math.score"}, \code{"reading.score"},
 #' or \code{"writing.score"}, compared to the chosen categorical variable (e.g. \code{"gender"}) for analysis.
 #' @export
 #'
-#' @examples data <- prepare_student_data(student_data)
+#' @examples
+#' data(students)
+#' data <- prepare_student_data(students)
 #' plot.StudentData(data, "gender", "boxplot")
+#'
+#'
 #'
 plot.StudentData <- function(data,
                                 categorical_var,
@@ -32,24 +37,24 @@ plot.StudentData <- function(data,
   }
 
   #Stack scores into one column
-  melted_data <- gather(data, key = "Subject", value = "Score", math.score, reading.score, writing.score)
+  melted_data <- tidyr::gather(data, key = "Subject", value = "Score", math.score, reading.score, writing.score)
 
   #Initialize ggplot
-  p <- ggplot::ggplot(melted_data, ggplot::aes_string(x = categorical_var, y = "Score", fill = "Subject")) +
-    ggplot::theme_minimal()
+  p <- ggplot2::ggplot(melted_data, ggplot2::aes_string(x = categorical_var, y = "Score", fill = "Subject")) +
+    ggplot2::theme_minimal()
 
   #Add plot type based on user choice
   if (plot_type == "boxplot") {
-    p <- p + ggplot::geom_boxplot(position = position_dodge(width = 0.8), width = 0.6)
-    p <- p + ggplot::ggtitle(paste("Boxplot of Student Test Scores by", categorical_var))
+    p <- p + ggplot2::geom_boxplot(position = ggplot2::position_dodge(width = 0.8), width = 0.6)
+    p <- p + ggplot2::ggtitle(paste("Boxplot of Student Test Scores by", categorical_var))
 
   } else if (plot_type == "violin") {
-    p <- p + ggplot::geom_violin(position = position_dodge(width = 0.8))
-    p <- p + ggplot::ggtitle(paste("Violin Plot of Student Test Scores by", categorical_var))
+    p <- p + ggplot2::geom_violin(position = ggplot2::position_dodge(width = 0.8))
+    p <- p + ggplot2::ggtitle(paste("Violin Plot of Student Test Scores by", categorical_var))
 
   } else if (plot_type == "barplot") {
-    p <- p + ggplot::geom_bar(stat = "summary", fun = "mean", position = position_dodge(width = 0.8), width = 0.6)
-    p <- p + ggplot::ggtitle(paste("Bar Plot of Student Test Scores by", categorical_var))
+    p <- p + ggplot2::geom_bar(stat = "summary", fun = "mean", position = ggplot2::position_dodge(width = 0.8), width = 0.6)
+    p <- p + ggplot2::ggtitle(paste("Bar Plot of Student Test Scores by", categorical_var))
 
   } else {
     stop(paste("Invalid plot type", plot_type, ". Choose from 'boxplot', 'violin', or 'barplot'."))

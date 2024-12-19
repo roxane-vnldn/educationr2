@@ -34,7 +34,7 @@ prepare_student_data <- function(data, scale = TRUE, handle_missing = "remove") 
   }
   # Handle missing values
   if (handle_missing == "remove") {
-    data <- na.omit(data)
+    data <- stats::na.omit(data)
   } else if (handle_missing == "mean") {
     data <- data.frame(lapply(data, function(col) {
       if (is.numeric(col)) {
