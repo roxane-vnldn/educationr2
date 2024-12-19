@@ -1,5 +1,5 @@
 ---
-title: "my_vignette"
+title: "educationr2"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{my_vignette}
@@ -17,3 +17,15 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(educationr2)
 ```
+
+
+educationr2 takes a data set consisting of the marks secured by the students in mathematics, reading and writing exams, along with information on gender, ethnicity, parental education level, lunch type, and participation in a test preparation course. It allows for analyzing the influence of these factors on academic performance. Three functions include
+
+  1. `prepare_student_data()` method: this prepares the data. It tidys into a clear readable and usable format
+  
+  2. `plot_student_scores()` method for producing nice visualizations based on `ggplot2`.
+  
+  3. `summary.StudentData()` this method calculations summary statistics for (mean median etc) for the data set 
+
+## Installation
+
