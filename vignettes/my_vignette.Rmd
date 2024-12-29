@@ -1,31 +1,154 @@
 ---
 title: "educationr2"
-output: rmarkdown::html_vignette
+output: 
+  bookdown::html_document2:
+      base_format: rmarkdown::html_vignette
+      fig_caption: yes
+      number_sections: no
+urlcolor: blue
+header-includes:
+  \usepackage{amsmath}
 vignette: >
-  %\VignetteIndexEntry{my_vignette}
+  %\VignetteIndexEntry{educationr2}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteDepends{bookdown}
+  %\VignetteDepends{ggplot2}
 ---
+
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
+  fig.width = 7,
+  fig.height = 5,
+  fig.align = "center",
+  message = FALSE,
   collapse = TRUE,
   comment = "#>"
 )
 ```
 
-```{r setup}
+```{r setup, echo=FALSE}
 library(educationr2)
 ```
 
+
+## Introduction
 
 educationr2 takes a data set consisting of the marks secured by the students in mathematics, reading and writing exams, along with information on gender, ethnicity, parental education level, lunch type, and participation in a test preparation course. It allows for analyzing the influence of these factors on academic performance. Three functions include
 
   1. `prepare_student_data()` method: this prepares the data. It tidys into a clear readable and usable format
   
-  2. `plot_student_scores()` method for producing nice visualizations based on `ggplot2`.
+  2. `plot.StudentData()` method for producing nice visualizations based on `ggplot2`.
   
   3. `summary.StudentData()` this method calculations summary statistics for (mean median etc) for the data set 
+  
+This vignette demonstrates a typical workflow using the educationr2 package, guiding you through data preparation, visualization, and summarisation.  
 
 ## Installation
+
+You can install the development version of educationr2 from
+[GitHub](https://github.com/) with:
+
+``` {r, eval=FALSE}
+install.packages("devtools")
+devtools::install_github("roxane-vnldn/educationr2")
+```
+
+then to load the package you simply use
+
+```{r, eval=FALSE}
+library(educationr2)
+```
+
+
+## 'prepare_student_data()'
+
+
+The `prepare_student_data()` function processes and tidies the student dataset. It handles missing values, converts non-score variables to factors, and optionally standardizes numeric score variables.
+
+### Example Usage
+
+```{r}
+students <- data.frame(
+  math.score = c(72, 69, NA, 47, 76),
+  reading.score = c(72, 90, 95, 57, 78),
+  writing.score = c(74, 88, 93, 44, 75),
+  gender = c("female", "female", "female", "male", "male"),
+  lunch = c("standard", "free/reduced", "standard", "free/reduced", "standard")
+)
+
+tidy_data <- prepare_student_data(students, scale = TRUE, handle_missing = "mean")
+tidy_data
+```
+
+
+
+
+
+The prepare_student_data() function prepares and cleans the input dataset, ensuring it is ready for analysis. It organizes the data into a tidy format, standardizes column names, and ensures data consistency.
+
+
+
+## 'plot.StudentData()'
+
+
+The `plot.StudentData()` method generates visualizations comparing subject scores against a chosen categorical variable. Supported plot types include `"boxplot"`, `"violin"`, and `"barplot"`.
+
+### Example Usage
+
+```{r, echo=FALSE, results='hide'}
+data <- prepare_student_data(students, scale = FALSE)
+p <- plot.StudentData(data, categorical_var = "gender", plot_type = "boxplot")
+```
+
+```{r}
+plot.StudentData(data, categorical_var = "gender", plot_type = "boxplot")
+```
+
+You can replace `"boxplot"` with `"violin"` or `"barplot"` for different visualizations.
+
+
+## 'summary.StudentData()'
+
+The `summary.StudentData()` function computes summary statistics (e.g., mean, median, max) for the student dataset, grouped by one or more categorical variables.
+
+### Example Usage
+
+```{r}
+summary_stats <- summary.StudentData(
+  obj = tidy_data,
+  group_var = c("gender", "lunch"),
+  summary_func = median
+)
+summary_stats
+```
+
+This calculates the median scores for each combination of `gender` and `lunch` categories.
+
+## Workflow Example
+
+Here’s a complete example demonstrating the workflow:
+
+1. Prepare the data:
+
+```{r}
+processed_data <- prepare_student_data(students, scale = FALSE)
+```
+
+2. Visualize the data:
+
+```{r}
+plot.StudentData(processed_data, categorical_var = "lunch", plot_type = "violin")
+```
+
+3. Compute summary statistics:
+
+```{r}
+summary_stats <- summary.StudentData(processed_data, group_var = "gender", summary_func = mean)
+summary_stats
+```
+
+These steps highlight how __educationr2__ simplifies the analysis of student performance data. 
+
 
