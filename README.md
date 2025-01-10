@@ -18,7 +18,7 @@ functions include
 1.  `prepare_student_data()` method: this prepares the data. It tidys
     into a clear readable and usable format
 
-2.  `plot_student_scores()` method for producing nice visualizations
+2.  `plot.StudentData()` method for producing nice visualizations
     based on `ggplot2`.
 
 3.  `summary.StudentData()` this method calculations summary statistics
