@@ -18,8 +18,8 @@ functions include
 1.  `prepare_student_data()` method: this prepares the data. It tidys
     into a clear readable and usable format
 
-2.  `plot.StudentData()` method for producing nice visualizations
-    based on `ggplot2`.
+2.  `plot.StudentData()` method for producing nice visualizations based
+    on `ggplot2`.
 
 3.  `summary.StudentData()` this method calculations summary statistics
     for (mean median etc) for the data set
@@ -27,7 +27,7 @@ functions include
 ## Installation
 
 You can install the development version of educationr2 from
-[GitHub](https://github.com/) with:
+[GitHub](https://github.com/roxane-vnldn/educationr2/tree/main) with:
 
 ``` r
 # install.packages("pak")
@@ -44,29 +44,29 @@ Firstly prepare the data
 ``` r
 library(educationr2)
 
-data <- prepare_student_data(students)
-head(data)
-#>   gender race.ethnicity parental.level.of.education        lunch
-#> 1 female        group B           bachelor's degree     standard
-#> 2 female        group C                some college     standard
-#> 3 female        group B             master's degree     standard
-#> 4   male        group A          associate's degree free/reduced
-#> 5   male        group C                some college     standard
-#> 6 female        group B          associate's degree     standard
-#>   test.preparation.course math.score reading.score writing.score
-#> 1                    none  0.3898284     0.1939016     0.3912960
-#> 2               completed  0.1919795     1.4267621     1.3126119
-#> 3                    none  1.5769224     1.7692233     1.6416533
-#> 4                    none -1.2589131    -0.8334822    -1.5829523
-#> 5                    none  0.6536271     0.6048551     0.4571043
-#> 6                    none  0.3238788     0.9473163     0.6545291
+student_data <- data.frame(
+  math.score = c(72, 69, NA, 47, 76),
+  reading.score = c(72, 90, 95, 57, 78),
+  writing.score = c(74, 88, 93, 44, 75),
+  gender = c("female", "female", "female", "male", "male")
+ )
+ tidy_data <- prepare_student_data(student_data, scale = TRUE, handle_missing = "mean")
+ str(tidy_data)
+#> Classes 'StudentData' and 'data.frame':  5 obs. of  4 variables:
+#>  $ math.score   : num  0.533 0.267 0 -1.689 0.889
+#>  $ reading.score: num  -0.4245 0.7694 1.1011 -1.4194 -0.0265
+#>  $ writing.score: num  -0.0419 0.6922 0.9543 -1.615 0.0105
+#>  $ gender       : Factor w/ 2 levels "female","male": 1 1 1 2 2
 ```
+
+(Note that the scores are standardized by default, which leads to
+negative score. The user can choose to standardize the data or not.)
 
 Now to visually display the data
 
 ``` r
 
-plot.StudentData(data, "gender", "barplot")
+plot.StudentData(tidy_data, "gender", "boxplot")
 ```
 
 <img src="man/figures/README-example2-1.png" width="100%" />
@@ -75,14 +75,14 @@ Or we can get statistical summarys
 
 ``` r
 
-summary.StudentData(data, group_var = c("gender", "lunch"), summary_func = median)
+summary.StudentData(students, group_var = c("gender", "lunch"), summary_func = median)
 #> # A tibble: 4 × 5
 #>   gender lunch        math.score reading.score writing.score
-#>   <fct>  <fct>             <dbl>         <dbl>         <dbl>
-#> 1 female free/reduced    -0.599         -0.149      -0.00355
-#> 2 female standard         0.0601         0.399       0.523  
-#> 3 male   free/reduced    -0.270         -0.560      -0.596  
-#> 4 male   standard         0.390         -0.114      -0.0694
+#>   <chr>  <chr>             <dbl>         <dbl>         <dbl>
+#> 1 female free/reduced         57          67              68
+#> 2 female standard             67          75              76
+#> 3 male   free/reduced         62          61              59
+#> 4 male   standard             72          67.5            67
 ```
 
 More information is provided on the educationr2 vignette

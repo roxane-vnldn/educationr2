@@ -56,6 +56,8 @@ student_data <- data.frame(
  str(tidy_data)
 ```
 
+(Note that the scores are standardized by default, which leads to negative score. The user can choose to standardize the data or not.)
+
 Now to visually display the data
 ```{r example2}
 
