@@ -2,7 +2,7 @@ Package: educationr2
 Type: Package
 Title: Analyse, Plot and Summarise Students test scores in multiple subjects considering external factors 
 Version: 0.1.0
-Author@R: c(person("Roxanne Marine", "Van Olden Barneveld", email="roxane.vanoldenbarneveld.2025@mumail.ie", role=c("aut", "cre"),
+Author@R: c(person("Roxane Marine", "Van Olden Barneveld", email="roxane.vanoldenbarneveld.2025@mumail.ie", role=c("aut", "cre"),
   person("Killian", "Harnett", email="killian.harnett.2022@mumail.ie", role=c("aut", "cre")),
   person("Krista", "Ritina", email="krista.ritina.2022@mumail.ie", role=c("aut", "cre")),
   person("Ronan", "Lambe", email="ronan.lambe.2022@mumail.ie", role=c("aut", "cre"))
